@@ -85,6 +85,7 @@ int main()
             {
                 printf("%s\n", curstr);
                 curstr = (char *)malloc(sizeof(char) * 100);
+                curst = 0;
             }
         }
         else
