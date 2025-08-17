@@ -22,7 +22,9 @@ op [*%+/-]
 "return".*       {printf("<return statement, %s>\n", yytext);}
 "def".*           {printf("<fn defn, %s>\n", yytext);}
 {id}            {printf("<identifier, %s>\n", yytext); BEGIN bm;}
-{val}           {printf("<value, %s>\n", yytext); BEGIN bm;}
+\".*\"|\'.*\'          {printf("<string, %s>",yytext); BEGIN 0;}
+({val}*|"0")"."({val}*|"0") {printf("<float const, %s>", yytext); BEGIN bm;}
+{val}           {printf("<integer value, %s>\n", yytext); BEGIN bm;}
 {op}"="            {printf("<shorthand op, %s>\n", yytext); BEGIN 0;}
 "+"             {printf("<plus>\n"); BEGIN 0;}
 <bm>"-"         {printf("<minus>\n"); BEGIN 0;}
