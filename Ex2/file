@@ -1,0 +1,6 @@
+a = 10;
+b = 20;
+c = a+b;
+sum = c;
+sum_SQR = sum*sum;
+length-of-sum = length(sum);
