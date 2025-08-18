@@ -9,7 +9,8 @@ int yylex();
 %token ID PLUS MINUS MUL DIV OB CB NL
 
 %%
-S : E NL      { printf("Valid\n"); }
+S : S E NL { printf("Valid\n"); }
+  |  E NL      { printf("Valid\n"); }
   ;
 
 E : E PLUS T	{printf("E->E+T\n");}

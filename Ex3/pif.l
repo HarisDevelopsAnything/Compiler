@@ -21,11 +21,13 @@ op [*%+/-]
 "print".*        {printf("<print statement, %s>\n", yytext);}
 "return".*       {printf("<return statement, %s>\n", yytext);}
 "def".*           {printf("<fn defn, %s>\n", yytext);}
+"while".*      {printf("<while loop, %s>\n",yytext);}
 {id}            {printf("<identifier, %s>\n", yytext); BEGIN bm;}
 \".*\"|\'.*\'          {printf("<string, %s>",yytext); BEGIN 0;}
 ({val}*|"0")"."({val}*|"0") {printf("<float const, %s>", yytext); BEGIN bm;}
 {val}           {printf("<integer value, %s>\n", yytext); BEGIN bm;}
 {op}"="            {printf("<shorthand op, %s>\n", yytext); BEGIN 0;}
+"="             {printf("<assignment>\n"); BEGIN 0;}
 "+"             {printf("<plus>\n"); BEGIN 0;}
 <bm>"-"         {printf("<minus>\n"); BEGIN 0;}
 "-"             {printf("<unary minus>\n"); BEGIN 0;}
@@ -33,7 +35,7 @@ op [*%+/-]
 "/"             {printf("<div>\n"); BEGIN 0;}
 "%"             {printf("<modulus>\n"); BEGIN 0;}
 {symbols}{1}"=" {printf("<logical, %s>\n", yytext); BEGIN 0;}
-^"while".*      {printf("<while loop, %s>\n",yytext);}
+
 .                      ;
 %%
 int main(int argc, char** argv){

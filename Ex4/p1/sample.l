@@ -11,7 +11,8 @@ num [0-9]
 "/"				{return DIV;}
 "("				{return OB;}
 ")"				{return CB;}
-[ \t\n]                  { /* ignore whitespace */ }
+"\n"            {return NL;}
+[ \t]                  { /* ignore whitespace */ }
 .                        { return yytext[0]; }
 %%
 
